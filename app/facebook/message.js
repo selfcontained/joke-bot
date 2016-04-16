@@ -15,7 +15,7 @@ module.exports = (app) => {
 
     if (!textEvent) {
       app.log.info('non text event received from facebook: ', req.body)
-      res.sendStatus(200)
+      return res.sendStatus(200)
     }
 
     var sender = textEvent.sender.id
