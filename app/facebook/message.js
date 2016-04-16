@@ -18,6 +18,7 @@ module.exports = (app) => {
       return res.sendStatus(200)
     }
 
+    app.log.facebook('facebook text event: ', textEvent)
     var sender = textEvent.sender.id
     var message = textEvent.message.text
 
