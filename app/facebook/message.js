@@ -11,13 +11,10 @@ module.exports = (app) => {
 
     var textEvent = messagingEvents.filter((event) => {
       return event.message && event.message.text
-      var sender = event.sender.id
-      if (event.message && event.message.text) {
-        sendTextMessage(sender, event.message.text)
-      }
     })[0]
 
     if (!textEvent) {
+      app.log.info('non text event received from facebook: ', req.body)
       res.sendStatus(200)
     }
 
