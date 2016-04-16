@@ -1,0 +1,21 @@
+{
+  "name": "joke-bot",
+  "version": "1.0.0",
+  "description": "A Slack and Facebook Messenger Joke Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selfcontained/joke-bot.git"
+  },
+  "author": "Brad Harris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/selfcontained/joke-bot/issues"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
