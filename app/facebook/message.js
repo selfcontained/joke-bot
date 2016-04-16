@@ -13,9 +13,12 @@ console.log(req.body)
       return event.message && event.message.text
     })[0]
 
+    // ack the message
+    res.sendStatus(200)
+
     if (!textEvent) {
       app.log.info('non text event received from facebook: ', req.body)
-      return res.sendStatus(200)
+      return
     }
 
     app.log.facebook('facebook text event: ', textEvent)
