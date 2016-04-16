@@ -18,8 +18,10 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cashbox": "^1.1.1",
     "crampon": "^0.2.2",
     "express": "^4.13.4",
+    "google-spreadsheet": "^2.0.1",
     "log-leveler": "^2.0.0",
     "request": "^2.71.0",
     "winston": "^2.2.0"

@@ -6,21 +6,38 @@ module.exports = (app) => {
   // route for handling facebook messages
   function handleMessage (req, res) {
     var entry = ((req.body.entry || [])[0] || {})
-    app.log.facebook('webhook entry: ', entry)
 
     var messagingEvents = (entry.messaging || [])
 
-    messagingEvents.forEach((event) => {
+    var textEvent = messagingEvents.filter((event) => {
+      return event.message && event.message.text
       var sender = event.sender.id
       if (event.message && event.message.text) {
         sendTextMessage(sender, event.message.text)
       }
-    })
+    })[0]
 
-    res.sendStatus(200)
+    if (!textEvent) {
+      res.sendStatus(200)
+    }
+
+    var sender = textEvent.sender.id
+    var message = textEvent.message.text
+
+    if (/joke/.test(message)) {
+      app.jokes.random((err, joke) => {
+        if (err || !joke) {
+          return sendMessage(sender, "Hmmmm, I can't seem to think of any jokes. 😕")
+        }
+
+        sendMessage(sender, joke)
+      })
+    }else {
+      sendMessage(sender, "I'm gonna be completely honest, I pretty much have no idea what you're saying unless it includes the word joke 😋")
+    }
   }
 
-  function sendTextMessage (sender, text) {
+  function sendMessage (sender, text) {
     request({
       method: 'POST',
       url: 'https://graph.facebook.com/v2.6/me/messages',

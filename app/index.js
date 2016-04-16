@@ -10,6 +10,8 @@ module.exports = (config) => {
 
   app.log.info('config: ', app.config)
 
+  app.jokes = require('./jokes/')(app)
+
   // Root status route
   app.http.get('/', (req, res) => {
     res.json({
