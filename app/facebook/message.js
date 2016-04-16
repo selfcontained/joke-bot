@@ -6,7 +6,7 @@ module.exports = (app) => {
   // route for handling facebook messages
   function handleMessage (req, res) {
     var entry = ((req.body.entry || [])[0] || {})
-
+console.log(req.body)
     var messagingEvents = (entry.messaging || [])
 
     var textEvent = messagingEvents.filter((event) => {
