@@ -8,6 +8,8 @@ module.exports = (config) => {
   app.log = require('./logger')(config.logging)
   app.http = express()
 
+  app.log.info('config: ', app.config)
+
   // Root status route
   app.http.get('/', (req, res) => {
     res.json({
