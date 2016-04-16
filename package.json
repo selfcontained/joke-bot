@@ -17,6 +17,7 @@
     "url": "https://github.com/selfcontained/joke-bot/issues"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "crampon": "^0.2.2",
     "express": "^4.13.4",
     "log-leveler": "^2.0.0",
