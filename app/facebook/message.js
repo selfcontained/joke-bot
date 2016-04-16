@@ -30,13 +30,17 @@ module.exports = (app) => {
 
     if (/joke/.test(message)) {
       app.jokes.random((err, joke) => {
-        if (err || !joke) {
+        if (err) {
+          app.log.error(err.message)
+        }
+
+        if (!joke) {
           return sendMessage(sender, "Hmmmm, I can't seem to think of any jokes. 😕")
         }
 
         sendMessage(sender, joke)
       })
-    }else {
+    } else {
       sendMessage(sender, "I'm gonna be completely honest, I pretty much have no idea what you're saying unless it includes the word joke 😋")
     }
   }

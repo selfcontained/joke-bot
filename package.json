@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "npm test"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "log-leveler": "^2.0.0",
     "request": "^2.71.0",
     "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "standard": "^6.0.8"
   }
 }

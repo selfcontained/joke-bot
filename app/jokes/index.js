@@ -5,15 +5,13 @@ module.exports = (app) => {
 
   return {
 
+    all: getJokes,
+
     // Return a random joke
     random (done) {
       getJokes((err, jokes) => {
         if (err) {
-          return done(err)
-        }
-
-        if ((jokes || []).length === 0) {
-          return done(new Error('no jokes returned'))
+          return done(err, jokes)
         }
 
         done(null, jokes[Math.floor(Math.random() * jokes.length)])
