@@ -3,6 +3,7 @@ const BeepBoop = require('beepboop-botkit')
 
 module.exports = (app) => {
   var controller = Botkit.slackbot({
+    retry: true,
     logger: botkitLogger(app.log)
   })
 
