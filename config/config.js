@@ -15,6 +15,8 @@ module.exports = {
       timestamp: true,
       loggers: {
         debug: 'rainbow',
+        beepboop: 'magenta',
+        botkit: 'yellow',
         facebook: 'blue',
         info: 'green',
         error: 'red'
@@ -22,6 +24,8 @@ module.exports = {
       enabled: {
         debug: false,
         facebook: true,
+        beepboop: true,
+        botkit: true,
         info: true,
         error: true
       }

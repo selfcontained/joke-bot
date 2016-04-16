@@ -17,7 +17,9 @@
     "url": "https://github.com/selfcontained/joke-bot/issues"
   },
   "dependencies": {
+    "beepboop-botkit": "^1.1.2",
     "body-parser": "^1.15.0",
+    "botkit": "^0.1.1",
     "cashbox": "^1.1.1",
     "crampon": "^0.2.2",
     "express": "^4.13.4",
