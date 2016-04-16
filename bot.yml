@@ -2,5 +2,7 @@ name: Roflbot
 description: Guaranteed to brighten your day
 config:
   - name: NODE_ENV
-    default: production
     global: true
+  - name: AIRTABLE_KEY
+    global: true
+    type: secret
