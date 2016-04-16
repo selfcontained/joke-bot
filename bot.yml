@@ -1,5 +1,7 @@
 name: Roflbot
-description: Guaranteed to brighten your day
+description: Spreading rofls and lols
+avatar: images/avatar.jpg
+background: images/background.jpg
 config:
   - name: NODE_ENV
     global: true
