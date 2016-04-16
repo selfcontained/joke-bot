@@ -11,7 +11,7 @@ module.exports = (app) => {
     logger: beepboopLogger(app.log)
   })
 
-  var atBot = ['direct_message', 'direct_mention', 'mention']
+  var atBot = ['direct_message', 'direct_mention', 'mention', 'ambient']
 
   controller.hears('joke', atBot, function (bot, message) {
     bot.startTyping(message)
