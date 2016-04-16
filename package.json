@@ -4,6 +4,7 @@
   "description": "A Slack and Facebook Messenger Joke Bot",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "npm test"
   },
   "repository": {
