@@ -10,6 +10,14 @@ module.exports = {
       verifyToken: process.env.FACEBOOK_VERIFY_TOKEN,
       accessToken: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
     },
+    cache: {
+      store: 'redis',
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
+      options: {
+        password: process.env.REDIS_PASS
+      }
+    },
     logging: {
       colorize: false,
       timestamp: true,
@@ -34,6 +42,9 @@ module.exports = {
   // Applied over production values
   development: {
     port: 8080,
+    cache: {
+      store: 'memory'
+    },
     logging: {
       colorize: true,
       timestamp: true,

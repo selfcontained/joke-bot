@@ -12,9 +12,9 @@ module.exports = (app) => {
     logger: beepboopLogger(app.log)
   })
 
-  var atBot = ['direct_message', 'direct_mention', 'mention', 'ambient']
+  var jokeTime = ['direct_message', 'direct_mention', 'mention', 'ambient']
 
-  controller.hears('joke', atBot, function (bot, message) {
+  controller.hears('joke', jokeTime, function (bot, message) {
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
@@ -23,6 +23,27 @@ module.exports = (app) => {
       }
 
       bot.reply(message, joke || "Hmmmm, I can't seem to think of any jokes. 😕")
+    })
+  })
+
+  controller.hears(['lol', 'rofl', 'haha'], ['ambient'], function (bot, message) {
+    // only tell a joke some of the time, let's not be annoying 😏
+    if (Math.random() > 0.33) {
+      return
+    }
+
+    bot.reply(message, "hah! you think that's funny? 😏")
+    bot.startTyping(message)
+
+    app.jokes.random((err, joke) => {
+      if (err) {
+        app.log.error(err.message)
+      }
+
+      // make it seem like bot is typing a joke for a bit
+      setTimeout(() => {
+        bot.reply(message, joke || "Nevermind, that's embarassing, I can't think of any good jokes. 😕")
+      }, 2000)
     })
   })
 }

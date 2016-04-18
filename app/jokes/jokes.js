@@ -1,11 +1,14 @@
 const GoogleSpreadsheet = require('google-spreadsheet')
 const Cashbox = require('cashbox')
+const deap = require('deap')
 
 module.exports = (app) => {
   var LAST_JOKES = []
   var config = app.config.spreadsheet
   var sheet = new GoogleSpreadsheet(config.id)
-  var cache = new Cashbox()
+  var cache = new Cashbox(deap({
+    error: app.log.error.bind(app.log)
+  }, app.config.cache))
 
   return function getJokes (done) {
     cache.get('jokes', (key, callback) => {
