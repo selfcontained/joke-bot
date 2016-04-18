@@ -2,6 +2,8 @@ const Botkit = require('botkit')
 const BeepBoop = require('beepboop-botkit')
 
 module.exports = (app) => {
+  var ambientThreshold = 0.33
+
   var controller = Botkit.slackbot({
     retry: true,
     logger: botkitLogger(app.log)
@@ -12,7 +14,7 @@ module.exports = (app) => {
     logger: beepboopLogger(app.log)
   })
 
-  var jokeTime = ['direct_message', 'direct_mention', 'mention', 'ambient']
+  var jokeTime = ['direct_message', 'direct_mention', 'mention']
 
   controller.hears('joke', jokeTime, function (bot, message) {
     bot.startTyping(message)
@@ -26,9 +28,30 @@ module.exports = (app) => {
     })
   })
 
+  controller.hears('joke', ['ambient'], function (bot, message) {
+    // only tell a joke some of the time, let's not be annoying 😏
+    if (Math.random() > ambientThreshold) {
+      return
+    }
+
+    bot.reply(message, "Did someone say joke? I've got a joke for you... 😋")
+    bot.startTyping(message)
+
+    app.jokes.random((err, joke) => {
+      if (err) {
+        app.log.error(err.message)
+      }
+
+      // make it seem like bot is typing a joke for a bit
+      setTimeout(() => {
+        bot.reply(message, joke || "Nevermind, that's embarassing, I can't think of any good jokes. 😕")
+      }, 2000)
+    })
+  })
+
   controller.hears(['lol', 'rofl', 'haha'], ['ambient'], function (bot, message) {
     // only tell a joke some of the time, let's not be annoying 😏
-    if (Math.random() > 0.33) {
+    if (Math.random() > ambientThreshold) {
       return
     }
 
