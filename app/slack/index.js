@@ -5,7 +5,7 @@ module.exports = (app) => {
   var ambientThreshold = 0.33
 
   var controller = Botkit.slackbot({
-    retry: true,
+    retry: 10,
     logger: botkitLogger(app.log)
   })
 
