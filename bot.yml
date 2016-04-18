@@ -7,6 +7,3 @@ screenshots:
 config:
   - name: NODE_ENV
     global: true
-  - name: AIRTABLE_KEY
-    global: true
-    type: secret
