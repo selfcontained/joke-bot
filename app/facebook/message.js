@@ -28,7 +28,7 @@ module.exports = (app) => {
     var sender = textEvent.sender.id
     var message = textEvent.message.text
 
-    if (/joke/.test(message)) {
+    if (/joke/i.test(message)) {
       app.jokes.random((err, joke) => {
         if (err) {
           app.log.error(err.message)
