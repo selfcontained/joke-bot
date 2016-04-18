@@ -20,7 +20,7 @@
     "beepboop-botkit": "^1.1.2",
     "body-parser": "^1.15.0",
     "botkit": "^0.1.1",
-    "cashbox": "^1.1.1",
+    "cashbox": "^2.0.0",
     "crampon": "^0.2.2",
     "deap": "^1.0.0",
     "express": "^4.13.4",
