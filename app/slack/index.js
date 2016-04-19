@@ -24,7 +24,7 @@ module.exports = (app) => {
         app.log.error(err.message)
       }
 
-      bot.reply(message, joke || "Hmmmm, I can't seem to think of any jokes. 😕")
+      bot.reply(message, joke || app.messages('NO_JOKE'))
     })
   })
 
@@ -34,7 +34,7 @@ module.exports = (app) => {
       return
     }
 
-    bot.reply(message, "Did someone say joke? I've got a joke for you... 😋")
+    bot.reply(message, app.message('HEARD_JOKE'))
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
@@ -44,7 +44,7 @@ module.exports = (app) => {
 
       // make it seem like bot is typing a joke for a bit
       setTimeout(() => {
-        bot.reply(message, joke || "Nevermind, that's embarassing, I can't think of any good jokes. 😕")
+        bot.reply(message, joke || app.messages('NO_JOKE_INITIATED'))
       }, 2000)
     })
   })
@@ -55,7 +55,7 @@ module.exports = (app) => {
       return
     }
 
-    bot.reply(message, "hah! you think that's funny? 😏")
+    bot.reply(message, app.messages('HEARD_FUNNY'))
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
@@ -65,17 +65,13 @@ module.exports = (app) => {
 
       // make it seem like bot is typing a joke for a bit
       setTimeout(() => {
-        bot.reply(message, joke || "Nevermind, that's embarassing, I can't think of any good jokes. 😕")
+        bot.reply(message, joke || app.messages('NO_JOKE_INITIATED'))
       }, 2000)
     })
   })
 
-  controller.hears('help', atBot, (bot, message) => {
-    bot.reply(message, [
-      "You can ask me directly for a joke and I'll happily share one.",
-      "Sometimes if I hear something joke related going on, I can't help but share one.",
-      'I also get pretty excited when something funny is going on, and tend to share jokes then as well.'
-    ].join('\n'))
+  controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
+    bot.reply(message, app.messages('HELP'))
   })
 }
 

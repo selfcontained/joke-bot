@@ -6,6 +6,7 @@ module.exports = (config) => {
 
   app.config = config
   app.log = require('./logger')(config.logging)
+  app.messages = require('./messages/')
   app.http = express()
 
   app.log.info('config: ', app.config)
