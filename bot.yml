@@ -1,5 +1,5 @@
-name: Roflbot
-description: Spreading rofls and lols
+name: roflbot
+description: roflbot will share jokes when prompted, as well as chime in when he thinks it's appropriate to try and keep the lols and rofls flowing.
 avatar: images/avatar.jpg
 background: images/background.jpg
 screenshots:

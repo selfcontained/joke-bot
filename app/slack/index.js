@@ -34,7 +34,7 @@ module.exports = (app) => {
       return
     }
 
-    bot.reply(message, app.message('HEARD_JOKE'))
+    bot.reply(message, app.messages('HEARD_JOKE'))
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
