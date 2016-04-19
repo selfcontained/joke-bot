@@ -70,6 +70,10 @@ module.exports = (app) => {
     })
   })
 
+  controller.hears(['thanks', 'thnx'], atBot, (bot, message) => {
+    bot.reply(message, app.messages('YOUR_WELCOME'))
+  })
+
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
     bot.reply(message, app.messages('HELP'))
   })
