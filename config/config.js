@@ -6,6 +6,9 @@ module.exports = {
       id: '1v5e3261-S7dxMONglcgnGwSWgiN7_rStiXEu8TBFV4k',
       sheet: 1
     },
+    slack: {
+      verifyToken: process.env.SLACK_VERIFY_TOKEN
+    },
     facebook: {
       verifyToken: process.env.FACEBOOK_VERIFY_TOKEN,
       accessToken: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
