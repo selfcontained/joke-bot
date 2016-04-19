@@ -3,7 +3,8 @@ description: roflbot will share jokes when prompted, as well as chime in when he
 avatar: images/avatar.jpg
 background: images/background.jpg
 screenshots:
-  - screenshot: images/messenger_code.png
+  - screenshot: images/screenshot.png
+  - screenshot: images/screenshot2.png
 config:
   - name: NODE_ENV
     global: true
