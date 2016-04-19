@@ -14,9 +14,9 @@ module.exports = (app) => {
     logger: beepboopLogger(app.log)
   })
 
-  var jokeTime = ['direct_message', 'direct_mention', 'mention']
+  var atBot = ['direct_message', 'direct_mention', 'mention']
 
-  controller.hears('joke', jokeTime, function (bot, message) {
+  controller.hears('joke', atBot, (bot, message) => {
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
@@ -28,7 +28,7 @@ module.exports = (app) => {
     })
   })
 
-  controller.hears('joke', ['ambient'], function (bot, message) {
+  controller.hears('joke', ['ambient'], (bot, message) => {
     // only tell a joke some of the time, let's not be annoying 😏
     if (Math.random() > ambientThreshold) {
       return
@@ -49,7 +49,7 @@ module.exports = (app) => {
     })
   })
 
-  controller.hears(['lol', 'rofl', 'haha'], ['ambient'], function (bot, message) {
+  controller.hears(['lol', 'rofl', 'haha'], ['ambient'], (bot, message) => {
     // only tell a joke some of the time, let's not be annoying 😏
     if (Math.random() > ambientThreshold) {
       return
@@ -68,6 +68,14 @@ module.exports = (app) => {
         bot.reply(message, joke || "Nevermind, that's embarassing, I can't think of any good jokes. 😕")
       }, 2000)
     })
+  })
+
+  controller.hears('help', atBot, (bot, message) => {
+    bot.reply(message, [
+      "You can ask me directly for a joke and I'll happily share one.",
+      "Sometimes if I hear something joke related going on, I can't help but share one.",
+      'I also get pretty excited when something funny is going on, and tend to share jokes then as well.'
+    ].join('\n'))
   })
 }
 
