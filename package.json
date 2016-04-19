@@ -26,6 +26,7 @@
     "express": "^4.13.4",
     "google-spreadsheet": "^2.0.1",
     "log-leveler": "^2.0.0",
+    "node-wit": "^3.2.0",
     "request": "^2.71.0",
     "winston": "^2.2.0"
   },

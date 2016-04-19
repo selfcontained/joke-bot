@@ -1,5 +1,7 @@
 const EventEmitter = require('events').EventEmitter
 const express = require('express')
+const Cashbox = require('cashbox')
+const deap = require('deap')
 
 module.exports = (config) => {
   var app = new EventEmitter()
@@ -7,6 +9,10 @@ module.exports = (config) => {
   app.config = config
   app.log = require('./logger')(config.logging)
   app.http = express()
+
+  app.cache = new Cashbox(deap({
+    error: app.log.error.bind(app.log)
+  }, app.config.cache))
 
   app.log.info('config: ', app.config)
 

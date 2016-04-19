@@ -16,3 +16,6 @@ config:
   - name: REDIS_PASS
     global: true
     type: secret
+  - name: WIT_ACCESS_TOKEN
+    global: true
+    type: secret

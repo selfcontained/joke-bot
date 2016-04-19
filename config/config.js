@@ -51,6 +51,9 @@ module.exports = {
       enabled: {
         debug: true
       }
+    },
+    wit: {
+      accessToken: process.env.WIT_ACCESS_TOKEN
     }
   }
 }
