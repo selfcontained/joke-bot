@@ -5,6 +5,10 @@ module.exports = (app) => {
   var verifyToken = app.config.slack.verifyToken
   var router = Router()
 
+  router.get('/joke', (req, res) => {
+    res.sendStatus(200)
+  })
+
   router.post('/joke', bodyParser.json(), (req, res) => {
     if (req.body.token !== verifyToken) {
       return res.sendStatus(401)
