@@ -50,7 +50,7 @@ module.exports = (app) => {
     })
   })
 
-  controller.hears(['lol', 'rofl', 'haha'], ['ambient'], (bot, message) => {
+  controller.hears(['lol', 'rofl', 'haha', 'hehe'], ['ambient'], (bot, message) => {
     // only tell a joke some of the time, let's not be annoying 😏
     if (Math.random() > ambientThreshold) {
       return
@@ -73,6 +73,10 @@ module.exports = (app) => {
 
   controller.hears(['thanks', 'thnx'], atBot, (bot, message) => {
     bot.reply(message, app.messages('YOUR_WELCOME'))
+  })
+
+  controller.hears(['good one', 'nice'], atBot, (bot, message) => {
+    bot.reply(message, app.messages('THANKS'))
   })
 
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
