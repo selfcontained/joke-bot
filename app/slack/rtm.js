@@ -30,7 +30,10 @@ module.exports = (app) => {
   })
 
   controller.hears('joke', ['ambient'], (bot, message) => {
-    console.log('heard joke: ', message)
+    // filter out a matching slash command
+    if (message.text === '/joke') {
+      return
+    }
     // only tell a joke some of the time, let's not be annoying 😏
     if (Math.random() > ambientThreshold) {
       return
