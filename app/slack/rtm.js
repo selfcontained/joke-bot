@@ -3,7 +3,7 @@ const BeepBoop = require('beepboop-botkit')
 
 // Setup slack rtm connections w/ botkit & beepboop
 module.exports = (app) => {
-  var ambientThreshold = 0.33
+  var ambientCheck = require('./ambient-check')(app)
 
   var controller = Botkit.slackbot({
     retry: 10,
@@ -34,8 +34,8 @@ module.exports = (app) => {
     if (message.text === '/joke') {
       return
     }
-    // only tell a joke some of the time, let's not be annoying 😏
-    if (Math.random() > ambientThreshold) {
+    // limit the amount of ambient responses
+    if (!ambientCheck(message.team)) {
       return
     }
 
@@ -55,8 +55,8 @@ module.exports = (app) => {
   })
 
   controller.hears(['lol', 'rofl', 'haha', 'hehe', 'lmao'], ['ambient'], (bot, message) => {
-    // only tell a joke some of the time, let's not be annoying 😏
-    if (Math.random() > ambientThreshold) {
+    // limit the amount of ambient responses
+    if (!ambientCheck(message.team)) {
       return
     }
 
