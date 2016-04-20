@@ -9,7 +9,7 @@ module.exports = (app) => {
     res.sendStatus(200)
   })
 
-  router.post('/joke', bodyParser.json(), (req, res) => {
+  router.post('/joke', bodyParser.urlencoded({ extended: true }), (req, res) => {
     app.log.info('/joke: ', req.body, verifyToken)
     if (req.body.token !== verifyToken) {
       return res.sendStatus(401)
