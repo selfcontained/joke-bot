@@ -10,7 +10,6 @@ module.exports = (app) => {
   })
 
   router.post('/joke', bodyParser.urlencoded({ extended: true }), (req, res) => {
-    app.log.info('/joke: ', req.body, verifyToken)
     if (req.body.token !== verifyToken) {
       return res.sendStatus(401)
     }
@@ -21,7 +20,7 @@ module.exports = (app) => {
       }
 
       res.json({
-        // response_type: 'in_channel',
+        response_type: 'in_channel',
         text: joke || app.messages('NO_JOKE')
       })
     })
