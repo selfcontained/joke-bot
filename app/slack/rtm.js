@@ -50,7 +50,7 @@ module.exports = (app) => {
     })
   })
 
-  controller.hears(['lol', 'rofl', 'haha', 'hehe'], ['ambient'], (bot, message) => {
+  controller.hears(['lol', 'rofl', 'haha', 'hehe', 'lmao'], ['ambient'], (bot, message) => {
     // only tell a joke some of the time, let's not be annoying 😏
     if (Math.random() > ambientThreshold) {
       return
