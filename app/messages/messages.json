@@ -1,7 +1,13 @@
 {
   "HEARD_FUNNY": [
+    "😆",
+    "😂",
+    "😋",
+    "✄ it out",
     "hah! you think that's funny? 😏",
-    "😆that was prty good, I've got a good one too though...",
+    "😂 have you heard this one?",
+    "👍 since we're sharing jokes...",
+    "😆 that was prty good, I've got a good one too though...",
     "lol"
   ],
   "HEARD_JOKE": [
@@ -10,21 +16,22 @@
     "yer gonna :heart: this one..."
   ],
   "NO_JOKE": [
-    "Hmmmm, I can't seem to think of any jokes. 😕",
-    "Weird, I'm drawing a blank.",
-    "How about you tell me a joke?"
+    "😨 Hmmmm, I can't seem to think of any jokes. 😕",
+    "😟 Weird, I'm drawing a blank.",
+    "😕 How about you tell me a joke?"
   ],
   "NO_JOKE_INITIATED": [
     "Nevermind, that's embarassing, I can't think of any good jokes. 😕",
-    "Anyone know a good joke?"
+    "😅 Anyone know a good joke?"
   ],
   "YOUR_WELCOME": [
     "No problem, I'm here all :night_with_stars:",
+    "roflbot's the name, jokes r my game",
     "You bet, I was born for this..."
   ],
   "THANKS": [
-    "/shrug Thanks, I didn't try that hard really, I just generated a random number and picked a joke based off of that",
-    "Been workin on that one for awhile, was just waiting for the right time.",
+    "\\_(ツ)_/¯ Thanks, I didn't try that hard really, I just generated a random number and picked a joke based off of that",
+    "Been workin on that one for awhile, was just waiting for the right :clock1:",
     "👊"
   ],
   "HELP": "You can ask me directly for a joke and I'll happily share one.\nSometimes if I hear something joke related going on, I can't help but share one.\nI also get pretty excited when something funny is going on, and tend to share jokes then as well."
