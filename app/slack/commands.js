@@ -20,7 +20,7 @@ module.exports = (app) => {
       }
 
       res.json({
-        response_type: 'in_channel',
+        // response_type: 'in_channel',
         text: joke || app.messages('NO_JOKE')
       })
     })
