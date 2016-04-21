@@ -18,6 +18,11 @@ module.exports = (app) => {
   var atBot = ['direct_message', 'direct_mention', 'mention']
 
   controller.hears('joke', atBot, (bot, message) => {
+    // filter out a matching slash command
+    if (message.text === '/joke') {
+      return
+    }
+
     bot.startTyping(message)
 
     app.jokes.random((err, joke) => {
