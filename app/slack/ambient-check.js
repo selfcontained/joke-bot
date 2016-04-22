@@ -1,5 +1,5 @@
 const sampledThreshold = 0.33
-const teamThrottleMS = 10 * 60 * 1000 // 10 minutes
+const teamThrottleMS = 30 * 60 * 1000 // 30 minutes
 
 module.exports = function (app) {
   var teamsLastAmbient = {}
