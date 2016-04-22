@@ -17,6 +17,3 @@ config:
   - name: REDIS_PASS
     global: true
     type: secret
-  - name: SLACK_VERIFY_TOKEN
-    global: true
-    type: secret
