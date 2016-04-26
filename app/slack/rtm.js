@@ -10,9 +10,31 @@ module.exports = (app) => {
     logger: botkitLogger(app.log)
   })
 
-  BeepBoop.start(controller, {
+  var beepboop = BeepBoop.start(controller, {
     debug: true,
     logger: beepboopLogger(app.log)
+  })
+
+  // Send a message to the user that added the bot right after it connects
+  beepboop.on('add_resource', function (message) {
+    var slackTeamId = message.resource.SlackTeamID
+    var slackUserId = message.resource.SlackUserID
+
+    if (message.isNew && slackUserId) {
+      var bot = beepboop.botByTeamId(slackTeamId)
+      if (!bot) {
+        return console.log('Error looking up botkit bot for team %s', slackTeamId)
+      }
+
+      bot.startPrivateConversation({user: slackUserId}, function (err, convo) {
+        if (err) {
+          return console.log(err)
+        }
+
+        convo.say('Thanks for adding me to your team!')
+        convo.say('In order for the rofls and lols to start flowing, just /invite me to a channel!')
+      })
+    }
   })
 
   var atBot = ['direct_message', 'direct_mention', 'mention']
