@@ -3,6 +3,7 @@ const express = require('express')
 const Cashbox = require('cashbox')
 const deap = require('deap')
 const morgan = require('morgan')
+const Persist = require('beepboop-persist')
 
 module.exports = (config) => {
   var app = new EventEmitter()
@@ -17,6 +18,9 @@ module.exports = (config) => {
   app.cache = new Cashbox(deap({
     error: app.log.error.bind(app.log)
   }, app.config.cache))
+
+  // Beep Boop persistence service
+  app.persist = Persist(app.config.persist)
 
   // Setup webserver
   app.http = express()
@@ -34,7 +38,8 @@ module.exports = (config) => {
   app.http.get('/jokes', (req, res) => {
     app.jokes.all((err, jokes) => {
       if (err) {
-        return app.log.error('Error fetching jokes: ', err.message)
+        app.log.error('Error fetching jokes: ', err.message)
+        res.send(err.message)
       }
 
       res.json(jokes)
@@ -43,14 +48,26 @@ module.exports = (config) => {
   app.http.get('/jokes/random', (req, res) => {
     app.jokes.random((err, joke) => {
       if (err) {
-        return app.log.error('Error fetching jokes: ', err.message)
+        app.log.error('Error fetching jokes: ', err.message)
+        return res.send(err.message)
+      }
+
+      res.send(joke)
+    })
+  })
+  app.http.get('/jokes/new-random/:identifier', (req, res) => {
+    app.jokes.newJoke(req.params.identifier, (err, joke) => {
+      if (err) {
+        app.log.error('Error fetching jokes: ', err.message)
+        return res.send(err.message)
       }
 
       res.send(joke)
     })
   })
 
-  // mount slack & facebook router
+  // mount persist, slack & facebook routers
+  app.http.use('/persist', require('./persist/')(app))
   app.http.use('/slack', require('./slack/')(app))
   app.http.use('/facebook', require('./facebook/')(app))
   app.log.facebook('Slack & Facebook routes registered')

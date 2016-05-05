@@ -4,7 +4,7 @@ module.exports = (app) => {
   var router = new Router()
 
   // Setup botkit/beepboop rtm controller
-  require('./rtm')(app)
+  // require('./rtm')(app)
 
   // Setup Slash Commands
   router.use('/commands', require('./commands')(app))

@@ -21,6 +21,7 @@ module.exports = {
         password: process.env.REDIS_PASS
       }
     },
+    persist: {},
     logging: {
       colorize: false,
       timestamp: true,
@@ -47,6 +48,9 @@ module.exports = {
     port: 8080,
     cache: {
       store: 'memory'
+    },
+    persist: {
+      token: null
     },
     logging: {
       colorize: true,
