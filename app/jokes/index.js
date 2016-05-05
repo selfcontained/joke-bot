@@ -36,7 +36,7 @@ module.exports = (app) => {
         // Grab jokes
         getJokes((err, jokes) => {
           if (err) {
-            return done(err, jokes)
+            return done(err, null)
           }
 
           // Filter jokes to untold ones
@@ -54,9 +54,13 @@ module.exports = (app) => {
 
           // Add joke to set of told jokes
           toldJokes.push(jokeIndex)
-          app.persist.set(key, toldJokes)
+          app.persist.set(key, toldJokes, (err) => {
+            if (err) {
+              return done(err, null)
+            }
 
-          done(null, jokes[jokeIndex])
+            done(null, jokes[jokeIndex])
+          })
         })
       })
     }
