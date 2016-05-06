@@ -14,7 +14,7 @@ module.exports = (app) => {
       return res.sendStatus(401)
     }
 
-    app.jokes.random((err, joke) => {
+    app.jokes.newJoke(req.body.team_id, (err, joke) => {
       if (err) {
         app.log.error(err.message)
       }

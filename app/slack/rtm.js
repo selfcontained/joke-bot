@@ -47,7 +47,7 @@ module.exports = (app) => {
 
     bot.startTyping(message)
 
-    app.jokes.random((err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke) => {
       if (err) {
         app.log.error(err.message)
       }
@@ -69,7 +69,7 @@ module.exports = (app) => {
     bot.reply(message, app.messages('HEARD_JOKE'))
     bot.startTyping(message)
 
-    app.jokes.random((err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke) => {
       if (err) {
         app.log.error(err.message)
       }
@@ -90,7 +90,7 @@ module.exports = (app) => {
     bot.reply(message, app.messages('HEARD_FUNNY'))
     bot.startTyping(message)
 
-    app.jokes.random((err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke) => {
       if (err) {
         app.log.error(err.message)
       }

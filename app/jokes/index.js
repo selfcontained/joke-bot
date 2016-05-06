@@ -20,6 +20,8 @@ module.exports = (app) => {
 
     // Grab a new, untold joke based on the identifier provided, i.e. slack team id
     newJoke (identifier, done) {
+      app.log.info('grabbing new joke for %s', identifier)
+
       // Get list of jokes already told to identifier
       var key = ['told_jokes', identifier].join(':')
 
