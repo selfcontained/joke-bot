@@ -39,27 +39,33 @@ module.exports = (app) => {
             return done(err, null)
           }
 
-          // Filter jokes to untold ones
-          var untoldJokes = jokes.filter((joke, idx) => {
-            return toldJokes.indexOf(idx) === -1
-          })
+          // get a mapping of untold jokes/indexes
+          var untoldJokes = jokes
+            .map((joke, index) => {
+              return { joke, index }
+            })
+            .filter((item) => {
+              return toldJokes.indexOf(item.index) === -1
+            })
 
           // We've told em all - reset
           if (untoldJokes.length === 0) {
-            untoldJokes = jokes
             toldJokes = []
+            untoldJokes = jokes.map((joke, index) => {
+              return { joke, index }
+            })
           }
 
-          var jokeIndex = Math.floor(Math.random() * untoldJokes.length)
+          var newJoke = untoldJokes[Math.floor(Math.random() * untoldJokes.length)]
 
           // Add joke to set of told jokes
-          toldJokes.push(jokeIndex)
+          toldJokes.push(newJoke.index)
           app.persist.set(key, toldJokes, (err) => {
             if (err) {
               return done(err, null)
             }
 
-            done(null, jokes[jokeIndex])
+            done(null, newJoke.joke)
           })
         })
       })

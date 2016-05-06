@@ -30,5 +30,19 @@ module.exports = (app) => {
     })
   })
 
+  // TODO: kill this route once done debugging 🔥
+  router.get('/del/:key', function (req, res) {
+    app.persist.del(req.params.key, function (err) {
+      if (err) {
+        app.log.error(err)
+        return res.json({
+          error: err
+        })
+      }
+
+      res.send('deleted ' + req.params.key)
+    })
+  })
+
   return router
 }
