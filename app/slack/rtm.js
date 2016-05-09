@@ -113,10 +113,6 @@ module.exports = (app) => {
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
     bot.reply(message, app.messages('HELP'))
   })
-
-  controller.hears("^let's see if (@[\w]+) agrees$", ['mention'], (bot, message) => {
-    bot.reply(message, app.messages('AGREES'))
-  })
 }
 
 function beepboopLogger (log) {
