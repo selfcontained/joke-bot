@@ -6,7 +6,7 @@ module.exports = (app) => {
   var ambientCheck = require('./ambient-check')(app)
 
   var controller = Botkit.slackbot({
-    retry: 10,
+    retry: Infinity,
     logger: botkitLogger(app.log)
   })
 
@@ -112,6 +112,10 @@ module.exports = (app) => {
 
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
     bot.reply(message, app.messages('HELP'))
+  })
+
+  controller.hears("^let's see if (@[\w]+) agrees$", ['mention'], (bot, message) => {
+    bot.reply(message, app.messages('AGREES'))
   })
 }
 
