@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "beepboop-botkit": "^1.4.0",
-    "beepboop-persist": "0.0.4",
+    "beepboop-persist": "0.0.7",
     "body-parser": "^1.15.0",
     "botkit": "^0.1.1",
     "cashbox": "^2.0.0",

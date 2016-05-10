@@ -20,7 +20,9 @@ module.exports = (config) => {
   }, app.config.cache))
 
   // Beep Boop persistence service
-  app.persist = Persist(app.config.persist)
+  app.persist = Persist({
+    debug: true
+  })
 
   // Setup webserver
   app.http = express()
