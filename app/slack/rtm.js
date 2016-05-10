@@ -16,23 +16,18 @@ module.exports = (app) => {
   })
 
   // Send a message to the user that added the bot right after it connects
-  beepboop.on('add_resource', function (message) {
-    var slackTeamId = message.resource.SlackTeamID
-    var slackUserId = message.resource.SlackUserID
+  beepboop.on('botkit.rtm.started', function (bot, resource, meta) {
+    var slackUserId = resource.SlackUserID
 
-    if (message.isNew && slackUserId) {
-      var bot = beepboop.botByTeamId(slackTeamId)
-      if (!bot) {
-        return console.log('Error looking up botkit bot for team %s', slackTeamId)
-      }
-
-      bot.startPrivateConversation({user: slackUserId}, function (err, convo) {
+    if (meta.isNew && slackUserId) {
+      app.log.info('welcoming user %s', slackUserId)
+      bot.api.im.open({ user: slackUserId }, function (err, response) {
         if (err) {
-          return console.log(err)
+          return app.log.error(err)
         }
-
-        convo.say('Thanks for adding me to your team!')
-        convo.say('In order for the rofls and lols to start flowing, just /invite me to a channel!')
+        var dmChannel = response.channel.id
+        bot.say({channel: dmChannel, text: 'Thanks for adding me to your team!'})
+        bot.say({channel: dmChannel, text: 'In order for the rofls and lols to start flowing, just /invite me to a channel!'})
       })
     }
   })
