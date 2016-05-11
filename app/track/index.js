@@ -18,6 +18,6 @@ module.exports = function (app, config) {
     }
 
     app.log.info('app.track(%s)', arguments[0], arguments[1])
-    mixpanel.track.apply(arguments)
+    mixpanel.track.apply(mixpanel, arguments)
   }
 }
