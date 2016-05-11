@@ -20,6 +20,11 @@ module.exports = (app) => {
     var slackUserId = resource.SlackUserID
 
     if (meta.isNew && slackUserId) {
+      app.track('team.added', {
+        distinct_id: resource.SlackTeamID,
+        teamName: resource.SlackTeamName,
+        userId: resource.SlackUserID
+      })
       app.log.info('welcoming user %s', slackUserId)
       bot.api.im.open({ user: slackUserId }, function (err, response) {
         if (err) {
@@ -42,11 +47,16 @@ module.exports = (app) => {
 
     bot.startTyping(message)
 
-    app.jokes.newJoke(message.team, (err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke, jokeId) => {
       if (err) {
         app.log.error(err.message)
       }
 
+      app.track('joke.requested', {
+        distinct_id: message.team,
+        jokeId: jokeId,
+        joke: joke
+      })
       bot.reply(message, joke || app.messages('NO_JOKE'))
     })
   })
@@ -64,10 +74,16 @@ module.exports = (app) => {
     bot.reply(message, app.messages('HEARD_JOKE'))
     bot.startTyping(message)
 
-    app.jokes.newJoke(message.team, (err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke, jokeId) => {
       if (err) {
         app.log.error(err.message)
       }
+
+      app.track('joke.ambient', {
+        distinct_id: message.team,
+        jokeId: jokeId,
+        joke: joke
+      })
 
       // make it seem like bot is typing a joke for a bit
       setTimeout(() => {
@@ -85,10 +101,16 @@ module.exports = (app) => {
     bot.reply(message, app.messages('HEARD_FUNNY'))
     bot.startTyping(message)
 
-    app.jokes.newJoke(message.team, (err, joke) => {
+    app.jokes.newJoke(message.team, (err, joke, jokeId) => {
       if (err) {
         app.log.error(err.message)
       }
+
+      app.track('joke.ambient.lol', {
+        distinct_id: message.team,
+        jokeId: jokeId,
+        joke: joke
+      })
 
       // make it seem like bot is typing a joke for a bit
       setTimeout(() => {
@@ -98,14 +120,23 @@ module.exports = (app) => {
   })
 
   controller.hears(['thanks', 'thnx'], atBot, (bot, message) => {
+    app.track('thanks.reply', {
+      distinct_id: message.team
+    })
     bot.reply(message, app.messages('YOUR_WELCOME'))
   })
 
   controller.hears(['good one', 'nice'], atBot, (bot, message) => {
+    app.track('nice.reply', {
+      distinct_id: message.team
+    })
     bot.reply(message, app.messages('THANKS'))
   })
 
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
+    app.track('help.reply', {
+      distinct_id: message.team
+    })
     bot.reply(message, app.messages('HELP'))
   })
 }

@@ -14,10 +14,16 @@ module.exports = (app) => {
       return res.sendStatus(401)
     }
 
-    app.jokes.newJoke(req.body.team_id, (err, joke) => {
+    app.jokes.newJoke(req.body.team_id, (err, joke, jokeId) => {
       if (err) {
         app.log.error(err.message)
       }
+
+      app.track('joke.command', {
+        distinct_id: req.body.team_id,
+        jokeId: jokeId,
+        joke: joke
+      })
 
       res.json({
         response_type: 'in_channel',

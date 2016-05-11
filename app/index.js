@@ -4,6 +4,7 @@ const Cashbox = require('cashbox')
 const deap = require('deap')
 const morgan = require('morgan')
 const Persist = require('beepboop-persist')
+const Mixpanel = require('mixpanel')
 
 module.exports = (config) => {
   var app = new EventEmitter()
@@ -23,6 +24,8 @@ module.exports = (config) => {
   app.persist = Persist({
     debug: true
   })
+
+  app.track = require('./track/')(app)
 
   // Setup webserver
   app.http = express()

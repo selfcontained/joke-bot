@@ -6,6 +6,9 @@ module.exports = {
       id: '1v5e3261-S7dxMONglcgnGwSWgiN7_rStiXEu8TBFV4k',
       sheet: 1
     },
+    mixpanel: {
+      token: process.env.MIXPANEL_TOKEN
+    },
     slack: {
       verifyToken: process.env.SLACK_VERIFY_TOKEN
     },

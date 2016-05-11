@@ -67,7 +67,13 @@ module.exports = (app) => {
               return done(err, null)
             }
 
-            done(null, newJoke.joke)
+            app.track('joke.new', {
+              distinct_id: identifier,
+              jokeId: newJoke.index,
+              joke: newJoke.joke
+            })
+
+            done(null, newJoke.joke, newJoke.index)
           })
         })
       })
