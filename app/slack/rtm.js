@@ -54,6 +54,8 @@ module.exports = (app) => {
 
       app.track('joke.requested', {
         distinct_id: message.team,
+        teamName: bot.team_info.name,
+        teamDomain: bot.team_info.domain,
         jokeId: jokeId,
         joke: joke
       })
@@ -81,6 +83,8 @@ module.exports = (app) => {
 
       app.track('joke.ambient', {
         distinct_id: message.team,
+        teamName: bot.team_info.name,
+        teamDomain: bot.team_info.domain,
         jokeId: jokeId,
         joke: joke
       })
@@ -108,6 +112,8 @@ module.exports = (app) => {
 
       app.track('joke.ambient.lol', {
         distinct_id: message.team,
+        teamName: bot.team_info.name,
+        teamDomain: bot.team_info.domain,
         jokeId: jokeId,
         joke: joke
       })
@@ -121,21 +127,27 @@ module.exports = (app) => {
 
   controller.hears(['thanks', 'thnx'], atBot, (bot, message) => {
     app.track('thanks.reply', {
-      distinct_id: message.team
+      distinct_id: message.team,
+      teamName: bot.team_info.name,
+      teamDomain: bot.team_info.domain
     })
     bot.reply(message, app.messages('YOUR_WELCOME'))
   })
 
   controller.hears(['good one', 'nice'], atBot, (bot, message) => {
     app.track('nice.reply', {
-      distinct_id: message.team
+      distinct_id: message.team,
+      teamName: bot.team_info.name,
+      teamDomain: bot.team_info.domain
     })
     bot.reply(message, app.messages('THANKS'))
   })
 
   controller.hears(['help', 'what do you do'], atBot, (bot, message) => {
     app.track('help.reply', {
-      distinct_id: message.team
+      distinct_id: message.team,
+      teamName: bot.team_info.name,
+      teamDomain: bot.team_info.domain
     })
     bot.reply(message, app.messages('HELP'))
   })

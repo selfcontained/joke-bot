@@ -21,6 +21,7 @@ module.exports = (app) => {
 
       app.track('joke.command', {
         distinct_id: req.body.team_id,
+        teamDomain: req.body.team_domain,
         jokeId: jokeId,
         joke: joke
       })
