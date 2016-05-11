@@ -17,3 +17,6 @@ config:
   - name: REDIS_PASS
     global: true
     type: secret
+  - name: MIXPANEL_TOKEN
+    global: true
+    type: secret
