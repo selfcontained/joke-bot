@@ -4,7 +4,6 @@ const Cashbox = require('cashbox')
 const deap = require('deap')
 const morgan = require('morgan')
 const Persist = require('beepboop-persist')
-const Mixpanel = require('mixpanel')
 
 module.exports = (config) => {
   var app = new EventEmitter()
@@ -74,8 +73,8 @@ module.exports = (config) => {
   // mount persist, slack & facebook routers
   app.http.use('/persist', require('./persist/')(app))
   app.http.use('/slack', require('./slack/')(app))
-  app.http.use('/facebook', require('./facebook/')(app))
-  app.log.facebook('Slack & Facebook routes registered')
+  // app.http.use('/facebook', require('./facebook/')(app))
+  app.log.facebook('Slack routes registered')
 
   app.http.listen(app.config.port, (err) => {
     if (err) {
