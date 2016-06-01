@@ -73,7 +73,6 @@ module.exports = (config) => {
   // mount persist, slack & facebook routers
   app.http.use('/persist', require('./persist/')(app))
   app.http.use('/slack', require('./slack/')(app))
-  // app.http.use('/facebook', require('./facebook/')(app))
   app.log.facebook('Slack routes registered')
 
   app.http.listen(app.config.port, (err) => {

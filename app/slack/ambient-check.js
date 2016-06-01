@@ -1,4 +1,4 @@
-const sampledThreshold = 0.33
+const sampledThreshold = 0.05
 const teamThrottleMS = 2 * 60 * 60 * 1000 // 2 hours
 
 module.exports = function (app) {
