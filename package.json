@@ -20,7 +20,7 @@
     "beepboop-botkit": "^1.4.0",
     "beepboop-persist": "0.0.7",
     "body-parser": "^1.15.0",
-    "botkit": "^0.1.1",
+    "botkit": "selfcontained/botkit#f62821f2cbb9b1a92e8b81fa7c94a4d932d0b73e",
     "cashbox": "^2.0.0",
     "crampon": "^0.2.2",
     "deap": "^1.0.0",
