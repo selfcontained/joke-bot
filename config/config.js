@@ -29,17 +29,13 @@ module.exports = {
       timestamp: true,
       loggers: {
         debug: 'rainbow',
-        beepboop: 'magenta',
-        botkit: 'yellow',
-        facebook: 'blue',
+        slackapp: 'magenta',
         info: 'green',
         error: 'red'
       },
       enabled: {
         debug: false,
-        facebook: true,
-        beepboop: true,
-        botkit: true,
+        slackapp: true,
         info: true,
         error: true
       }
