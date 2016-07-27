@@ -43,7 +43,7 @@ module.exports = {
   },
   // Applied over production values
   development: {
-    port: 3000,
+    port: process.env.PORT || 3000,
     cache: {
       store: 'memory'
     },
