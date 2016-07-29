@@ -4,30 +4,13 @@ const SlackApp = require('slackapp')
 module.exports = (app) => {
   var router = new Router()
 
-  var slackapp = SlackApp()
-
-  slackapp.command('/joke', (msg) => {
-    var teamId = msg.body.team_id
-    var teamDomain = msg.body.team_domain
-
-    app.jokes.newJoke(teamId, (err, joke, jokeId) => {
-      if (err) {
-        app.log.error(err.message)
-      }
-
-      app.track('joke.command', {
-        distinct_id: teamId,
-        teamDomain: teamDomain,
-        jokeId: jokeId,
-        joke: joke
-      })
-
-      msg.respond(msg.body.response_url, {
-        response_type: 'in_channel',
-        text: joke || app.messages('NO_JOKE')
-      })
-    })
+  app.slackapp = SlackApp({
+    debug: app.config.slackapp.debug
   })
 
-  return slackapp.attachToExpress(router)
+  require('./commands')(app)
+
+  require('./messages')(app)
+
+  return app.slackapp.attachToExpress(router)
 }

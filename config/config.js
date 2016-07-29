@@ -1,6 +1,9 @@
 module.exports = {
   production: {
     port: process.env.PORT,
+    slackapp: {
+      debug: false
+    },
     spreadsheet: {
       ttl: '15 minutes',
       id: '1v5e3261-S7dxMONglcgnGwSWgiN7_rStiXEu8TBFV4k',
@@ -44,6 +47,9 @@ module.exports = {
   // Applied over production values
   development: {
     port: process.env.PORT || 3000,
+    slackapp: {
+      debug: true
+    },
     cache: {
       store: 'memory'
     },
