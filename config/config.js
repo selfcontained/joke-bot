@@ -1,9 +1,6 @@
 module.exports = {
   production: {
     port: process.env.PORT,
-    slackapp: {
-      debug: false
-    },
     spreadsheet: {
       ttl: '15 minutes',
       id: '1v5e3261-S7dxMONglcgnGwSWgiN7_rStiXEu8TBFV4k',
@@ -14,10 +11,6 @@ module.exports = {
     },
     slack: {
       verifyToken: process.env.SLACK_VERIFY_TOKEN
-    },
-    facebook: {
-      verifyToken: process.env.FACEBOOK_VERIFY_TOKEN,
-      accessToken: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
     },
     cache: {
       store: 'redis',
@@ -32,13 +25,13 @@ module.exports = {
       timestamp: true,
       loggers: {
         debug: 'rainbow',
-        slackapp: 'magenta',
+        slapp: 'magenta',
         info: 'green',
         error: 'red'
       },
       enabled: {
         debug: false,
-        slackapp: true,
+        slapp: true,
         info: true,
         error: true
       }
@@ -47,9 +40,6 @@ module.exports = {
   // Applied over production values
   development: {
     port: process.env.PORT || 3000,
-    slackapp: {
-      debug: true
-    },
     cache: {
       store: 'memory'
     },

@@ -4,7 +4,31 @@ module.exports = (app) => {
 
   var atBot = ['direct_message', 'direct_mention', 'mention']
 
-  app.slackapp
+  app.slapp
+    // Send a message to the user that added the bot right after it connects
+    .event('bb.team_added', function (msg) {
+      var user = msg.meta.user_id
+      var token = msg.meta.bot_access_token
+
+      app.track('team.added', {
+        distinct_id: msg.meta.team_id,
+        teamName: msg.meta.team_name,
+        teamDomain: msg.meta.team_domain,
+        userId: user
+      })
+      app.log.info('welcoming user %s', user)
+
+      app.slapp.client.im.open({ token, user }, (err, data) => {
+        if (err) {
+          return app.log.error(err)
+        }
+        var channel = data.channel.id
+
+        msg
+          .say({ channel, text: 'Thanks for adding me to your team!' })
+          .say({ channel, text: 'In order for the rofls and lols to start flowing, just /invite me to a channel!' })
+      })
+    })
     .message('joke', atBot, (msg) => {
       // filter out a matching slash command
       if (msg.body.text === '/joke') {

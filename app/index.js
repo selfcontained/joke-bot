@@ -72,7 +72,7 @@ module.exports = (config) => {
 
   // mount persist, slack & facebook routers
   app.http.use('/persist', require('./persist/')(app))
-  app.http.use(require('./slackapp/')(app))
+  app.http.use(require('./slapp/')(app))
 
   app.http.listen(app.config.port, (err) => {
     if (err) {

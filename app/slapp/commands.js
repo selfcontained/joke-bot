@@ -1,6 +1,6 @@
 
 module.exports = (app) => {
-  app.slackapp.command('/joke', (msg) => {
+  app.slapp.command('/joke', (msg) => {
     var teamId = msg.body.team_id
     var teamDomain = msg.body.team_domain
 

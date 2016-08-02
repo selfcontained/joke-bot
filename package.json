@@ -30,7 +30,9 @@
     "mixpanel": "^0.4.0",
     "morgan": "^1.7.0",
     "request": "^2.71.0",
-    "slackapp": "0.0.10",
+    "slapp": "^1.0.1",
+    "slapp-context-beepboop": "^1.0.0",
+    "slapp-convo-beepboop": "^1.0.0",
     "winston": "^2.2.0"
   },
   "devDependencies": {
