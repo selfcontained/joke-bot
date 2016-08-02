@@ -2,19 +2,20 @@ const Router = require('express').Router
 const Slapp = require('slapp')
 const BeepBoopContext = require('slapp-context-beepboop')
 const BeepBoopConvo = require('slapp-convo-beepboop')
+const bodyParser = require('body-parser')
 
 module.exports = (app) => {
   var router = new Router()
 
-  var logger = (req, res, next) => {
-    console.log('slapp: ', req.slapp)
+  router.use(bodyParser.json(), (req, res, next) => {
+    console.log('body: ', req.body)
 
     next()
-  }
+  })
 
   app.slapp = Slapp({
     verify_token: app.config.slack.verifyToken,
-    context: [BeepBoopContext(), logger],
+    context: BeepBoopContext(),
     convo_store: BeepBoopConvo()
   })
 
