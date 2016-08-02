@@ -6,15 +6,15 @@ const BeepBoopConvo = require('slapp-convo-beepboop')
 module.exports = (app) => {
   var router = new Router()
 
-  router.use((req, res, next) => {
-    console.log(req.body)
+  var logger = (req, res, next) => {
+    console.log('slapp: ', req.slapp)
 
     next()
-  })
+  }
 
   app.slapp = Slapp({
     verify_token: app.config.slack.verifyToken,
-    context: BeepBoopContext(),
+    context: [BeepBoopContext(), logger],
     convo_store: BeepBoopConvo()
   })
 
