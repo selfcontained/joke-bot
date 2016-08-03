@@ -30,7 +30,7 @@
     "mixpanel": "^0.4.0",
     "morgan": "^1.7.0",
     "request": "^2.71.0",
-    "slapp": "^1.0.1",
+    "slapp": "^1.0.2",
     "slapp-context-beepboop": "^1.0.0",
     "slapp-convo-beepboop": "^1.0.0",
     "winston": "^2.2.0"
