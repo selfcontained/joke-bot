@@ -17,7 +17,7 @@ module.exports = function (app, config) {
       return
     }
 
-    app.log.info('app.track(%s)', arguments[0], arguments[1])
+    app.log.info('app.track(%s)', arguments[0])
     mixpanel.track.apply(mixpanel, arguments)
   }
 }

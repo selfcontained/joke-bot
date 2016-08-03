@@ -20,9 +20,7 @@ module.exports = (config) => {
   }, app.config.cache))
 
   // Beep Boop persistence service
-  app.persist = Persist({
-    debug: true
-  })
+  app.persist = Persist()
 
   app.track = require('./track/')(app)
 
