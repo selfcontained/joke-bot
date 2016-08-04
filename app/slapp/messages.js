@@ -8,7 +8,7 @@ module.exports = (app) => {
     // Send a message to the user that added the bot right after it connects
     .event('bb.team_added', function (msg) {
       var user = msg.meta.user_id
-      var token = msg.meta.bot_access_token
+      var token = msg.meta.bot_token
 
       app.track('team.added', {
         distinct_id: msg.meta.team_id,
