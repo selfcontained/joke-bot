@@ -5,7 +5,7 @@ module.exports = function (app) {
   var teamsLastAmbient = {}
 
   return function ambientCheck (team) {
-    var sendMessage = Math.random() > sampledThreshold
+    var sendMessage = Math.random() <= sampledThreshold
     if (!sendMessage) {
       return false
     }
