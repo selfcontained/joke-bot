@@ -19,6 +19,7 @@
   "dependencies": {
     "beepboop-botkit": "^1.4.0",
     "beepboop-persist": "0.0.7",
+    "beepboop-smallwins-slack": "^0.1.0",
     "body-parser": "^1.15.2",
     "botkit": "~0.2.1",
     "cashbox": "^2.0.0",

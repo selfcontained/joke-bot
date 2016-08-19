@@ -1,5 +1,6 @@
 const Router = require('express').Router
 const Slapp = require('slapp')
+const slack = require('slapp/client')
 const BeepBoopContext = require('slapp-context-beepboop')
 const BeepBoopConvo = require('slapp-convo-beepboop')
 
@@ -15,6 +16,10 @@ module.exports = (app) => {
   require('./commands')(app)
 
   require('./messages')(app)
+
+  require('./beepboop-slapp-presence-polyfill')(slack, {
+    debug: true
+  })
 
   return app.slapp.attachToExpress(router)
 }
