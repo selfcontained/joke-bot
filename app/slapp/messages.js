@@ -9,6 +9,7 @@ module.exports = (app) => {
     .event('bb.team_added', function (msg) {
       var user = msg.meta.user_id
       var token = msg.meta.bot_token
+      console.log('meta: ', msg.meta)
 
       app.track('team.added', {
         distinct_id: msg.meta.team_id,

@@ -21,3 +21,7 @@ config:
   - name: MIXPANEL_TOKEN
     global: true
     type: secret
+slackscopes:
+  - bot
+  - commands
+  - incoming-webhook
