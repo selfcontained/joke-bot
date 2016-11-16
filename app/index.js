@@ -78,5 +78,6 @@ module.exports = (config) => {
     }
 
     app.log.info('http server started on port %s', app.config.port)
+    app.log.info('roflbot ready for business')
   })
 }
