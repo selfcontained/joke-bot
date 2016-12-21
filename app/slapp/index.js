@@ -16,9 +16,5 @@ module.exports = (app) => {
 
   require('./messages')(app)
 
-  require('beepboop-slapp-presence-polyfill')(app.slapp, {
-    debug: true
-  })
-
   return app.slapp.attachToExpress(router)
 }
